@@ -14,6 +14,10 @@ class Profile(Base):
     gender = Column(Enum('male', 'female', 'other', name='gender_type'))
     appointment_frequency = Column(Enum('weekly', 'monthly', name='appt_frequency'))
 
+    class Config:
+        orm_mode = True
+        from_attributes = True
+
 # ORM Model for Doctor
 class Doctor(Base):
     __tablename__ = "doctors"
@@ -27,6 +31,10 @@ class Doctor(Base):
 
     profile = relationship("Profile", backref="doctors")
 
+    class Config:
+        orm_mode = True
+        from_attributes = True
+
 # ORM Model for EmergencyContact
 class EmergencyContact(Base):
     __tablename__ = "emergency_contacts"
@@ -38,6 +46,10 @@ class EmergencyContact(Base):
     contact_relationship = Column(String)
 
     profile = relationship("Profile", backref="emergency_contacts")
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
 
     
 # alembic revision -m ""
