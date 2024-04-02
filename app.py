@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from database import Base,engine
 from core.user.routes import user_router
 from core.profile.routes import profile_router
+from core.genai.routes import mental_health
 from fastapi.middleware.cors import CORSMiddleware
 
 app=FastAPI()
@@ -22,6 +23,7 @@ app.add_middleware(
 
 app.include_router(user_router,prefix='/user',tags=['users'])
 app.include_router(profile_router,prefix='/profile',tags=['profile'])
+app.include_router(mental_health,prefix='/mental_health',tags=['mental health'])
 Base.metadata.create_all(bind=engine)
 
 

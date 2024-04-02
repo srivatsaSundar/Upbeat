@@ -79,7 +79,7 @@ def get_user_details(db: Session = Depends(get_db), user: User = Depends(get_cur
     return user
 
 @profile_router.get("/profile_details", response_model=dict)
-async def get_user_details(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+async def get_profile_details(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     try:
         profile = db.query(Profile).filter(Profile.user_id == user.id).first()
         if not profile:
