@@ -6,6 +6,7 @@ class ProfileCreate(BaseModel):
     dob: date 
     gender: str 
     appointment_frequency: str
+    test_timing:str
 
 class DoctorCreate(BaseModel):
     name: Optional[str]=None

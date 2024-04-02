@@ -19,7 +19,7 @@ def get_profile_id_from_user_id(db: Session, user_id: str) -> str:
 @profile_router.post('/profile')
 def create_profile(profile_data: ProfileCreate, db: Session = Depends(get_db), user:User =Depends(get_current_user)):
     try:
-        new_profile = Profile(dob=profile_data.dob,gender=profile_data.gender,appointment_frequency=profile_data.appointment_frequency,user_id=user.id)
+        new_profile = Profile(dob=profile_data.dob,gender=profile_data.gender,appointment_frequency=profile_data.appointment_frequency,test_timing=profile_data.test_timing,user_id=user.id)
         db.add(new_profile)
         db.commit()
         db.refresh(new_profile)

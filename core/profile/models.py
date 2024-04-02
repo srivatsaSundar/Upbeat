@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, Date, Enum
+from sqlalchemy import Column, String, Integer, ForeignKey, Date, Enum,Time
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
@@ -13,6 +13,7 @@ class Profile(Base):
     dob = Column(Date)
     gender = Column(Enum('male', 'female', 'other', name='gender_type'))
     appointment_frequency = Column(Enum('weekly', 'monthly', name='appt_frequency'))
+    test_timing=Column(Time)
 
     class Config:
         orm_mode = True
