@@ -11,7 +11,8 @@ app=FastAPI()
 origins = [
     "http://localhost:8080",
     "http://localhost:3000",
-    "https://main.d2xz3cyvwx48d0.amplifyapp.com/"
+    "https://main.d2xz3cyvwx48d0.amplifyapp.com/",
+    "https://upbeat-snj7.onrender.com"
 ]
 
 app.add_middleware(
@@ -29,4 +30,4 @@ Base.metadata.create_all(bind=engine)
 
 
 if __name__=="__main__":
-    uvicorn.run('app:app',host='0.0.0.0',port=8080,reload=True)
+    uvicorn.run('app:app',host='0.0.0.0',port=8080,reload=True,proxy_headers=True)
