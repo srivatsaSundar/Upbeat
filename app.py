@@ -5,8 +5,10 @@ from core.user.routes import user_router
 from core.profile.routes import profile_router
 from core.genai.routes import mental_health
 from fastapi.middleware.cors import CORSMiddleware
+from mangum import Mangum
 
 app=FastAPI()
+
 
 origins = [
     "http://localhost:8080",
@@ -28,6 +30,8 @@ app.include_router(profile_router,prefix='/profile',tags=['profile'])
 app.include_router(mental_health,prefix='/mental_health',tags=['mental health'])
 Base.metadata.create_all(bind=engine)
 
+def lambda_handler(event, context):
+    return Mangum(app)(event, context)
 
 if __name__=="__main__":
     uvicorn.run('app:app',host='0.0.0.0',port=8080,reload=True,proxy_headers=True)

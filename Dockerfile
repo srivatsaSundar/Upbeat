@@ -1,15 +1,19 @@
-FROM python:3.11.7-slim
+FROM public.ecr.aws/lambda/python:3.11
 
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONBUFFERED 1
 ENV APP_ENV prod
 
-WORKDIR /app
+# Maximize compatibility and reduce image size
+WORKDIR /var/task
 
-COPY . /app
+# Copy function code and requirements
+COPY . ${LAMBDA_TASK_ROOT}
+COPY requiremets.txt ${LAMBDA_TASK_ROOT}
 
+# Install dependencies (optimized for Lambda environment)
 RUN pip install --no-cache-dir -r requiremets.txt
 
-EXPOSE 8080
-RUN chmod +x entrypoint.sh
-ENTRYPOINT [ "/app/entrypoint.sh" ]
+# Set the correct handler for Lambda execution
+CMD ["app.lambda_handler"]
