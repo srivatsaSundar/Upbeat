@@ -14,7 +14,7 @@ origins = [
     "http://localhost:8080",
     "http://localhost:3000",
     "https://main.d2xz3cyvwx48d0.amplifyapp.com/",
-    "https://upbeat-snj7.onrender.com"
+    "https://lxqwnpuexkh74m4i7yjbc74u7a0ifzmz.lambda-url.ap-south-1.on.aws/",
 ]
 
 app.add_middleware(
