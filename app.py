@@ -9,7 +9,6 @@ from mangum import Mangum
 
 app=FastAPI()
 
-
 origins = [
     "http://localhost:8080",
     "http://localhost:3000",
@@ -30,8 +29,17 @@ app.include_router(profile_router,prefix='/profile',tags=['profile'])
 app.include_router(mental_health,prefix='/mental_health',tags=['mental health'])
 Base.metadata.create_all(bind=engine)
 
-def lambda_handler(event, context):
-    return Mangum(app)(event, context)
+def lambda_handler(event, context): 
+    headers = {
+        'Content-Type': 'application/json', 
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods':'*',
+        'Access-Control-Allow-Headers':'*',
+        'Accept':'*/*'  
+    }
+    response = Mangum(app)(event, context)
+    response.headers.update(headers)
+    return response
 
 if __name__=="__main__":
     uvicorn.run('app:app',host='0.0.0.0',port=8080,reload=True,proxy_headers=True)
