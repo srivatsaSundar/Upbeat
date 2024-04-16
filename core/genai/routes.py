@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from dependencies import get_db,get_current_user
 from core.user.models import User
 from .models import MentalHealth
-from .schema import MentalHealthSchema
+from .schema import MentalHealthSchema,MentalSchema
 from sklearn.preprocessing import LabelEncoder  
 import joblib
 import numpy as np
