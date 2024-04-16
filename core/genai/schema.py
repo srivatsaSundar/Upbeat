@@ -14,3 +14,4 @@ class MentalHealthSchema(BaseModel):
     suicidal_thoughts: str
     authority_respect: str
     sadness: str
+    prediction: str
