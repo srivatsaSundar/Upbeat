@@ -72,3 +72,11 @@ def mental_care(mental_care_data: MentalHealthSchema, db: Session = Depends(get_
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=f"Error occurred: {str(e)}")
+    
+@mental_health.get("/mental_health", response_model=list[MentalHealthSchema])
+def get_mental_health_data(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    try:
+        mental_health_data = db.query(MentalHealth).filter(MentalHealth.user_id == user.id).all()
+        return mental_health_data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error occurred: {str(e)}")
