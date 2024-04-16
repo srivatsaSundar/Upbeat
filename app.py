@@ -14,6 +14,7 @@ origins = [
     "http://localhost:3000",
     "https://main.d2xz3cyvwx48d0.amplifyapp.com",
     "https://upbeat-8f6t.onrender.com",
+    "*",
 ]
 
 app.add_middleware(
