@@ -13,7 +13,6 @@ origins = [
     "http://localhost:8080",
     "http://localhost:3000",
     "https://main.d2xz3cyvwx48d0.amplifyapp.com/",
-    "https://lxqwnpuexkh74m4i7yjbc74u7a0ifzmz.lambda-url.ap-south-1.on.aws/",
     "https://upbeat-8f6t.onrender.com/",
 ]
 
@@ -42,5 +41,5 @@ def lambda_handler(event, context):
     response.headers.update(headers)
     return response
 
-if __name__=="__main__":
-    uvicorn.run('app:app',host='0.0.0.0',port=8080,reload=True,proxy_headers=True)
+if __name__ == "__main__":
+    uvicorn.run('app:app', host='0.0.0.0', port=8080, reload=True, proxy_headers=True)
